@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from 'uuid';
 
 async function signUp(req, res) {
+
     try {
         const user = req.body;
 
@@ -37,7 +38,6 @@ async function signUp(req, res) {
     catch(e) {
         res.status(500).send(e);
     }
-
 
 
 }
