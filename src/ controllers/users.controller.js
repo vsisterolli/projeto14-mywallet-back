@@ -83,7 +83,18 @@ async function signIn(req, res) {
 
 }
 
+async function signOut(req, res) {
+    
+    let token = req.headers.authorization;
+    token = token.replace("Bearer ", "");
+    sessionsCollection.deleteOne({sessionId: token});
+
+    res.send("OK");
+
+}
+
 export {
     signIn,
-    signUp
+    signUp,
+    signOut
 }
