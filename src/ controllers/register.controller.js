@@ -1,4 +1,4 @@
-import { registerSchema, deleteSchema, changeSchema } from "../schemas/registerSchema.js";
+import { registerSchema, changeSchema } from "../schemas/registerSchema.js";
 import { usersCollection } from "../database/db.js";
 
 export async function addRegister(req, res) {
@@ -39,12 +39,9 @@ export async function getRegister(req, res) {
 
 export async function deleteRegister(req, res) {
     try {
-        const validation = deleteSchema.validate(req.body)
-        if(validation.err)
-            return res.status(422).send(err.message);
-
+        const removeId = req.params.id;
         const sessionUser = res.locals.user;
-        sessionUser.register = sessionUser.register.filter(value => value.id != req.body.id);
+        sessionUser.register = sessionUser.register.filter(value => value.id != removeId);
         await usersCollection.updateOne({_id: sessionUser._id}, 
                                         {$set: {...sessionUser}} )
         res.send(sessionUser.register)

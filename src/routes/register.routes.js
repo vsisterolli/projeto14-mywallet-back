@@ -6,7 +6,7 @@ const registerRouter = Router();
 
 registerRouter.post("/register", checkUser, addRegister)
 registerRouter.get("/register", checkUser, getRegister)
-registerRouter.delete("/register", checkUser, deleteRegister)
+registerRouter.delete("/register/:id", checkUser, deleteRegister)
 registerRouter.put("/register", checkUser, updateRegister)
 
 export default registerRouter;

@@ -54,7 +54,6 @@ async function signIn(req, res) {
         }
 
         const existUser = await usersCollection.findOne({email: user.email})
-        console.log(existUser)
         if(!existUser) {
             res.status(401).send("This email hasn't been registered yet")
             return;
@@ -73,8 +72,14 @@ async function signIn(req, res) {
             "sessionId": sessionId
         };
 
+        const data = {
+            "username": existUser.username,
+            "sessionId": sessionId
+        }
+        console.log(data)
+
         sessionsCollection.insertOne(session)
-        res.status(201).send(sessionId)
+        res.status(201).send(data)
     }
     
     catch(e) {

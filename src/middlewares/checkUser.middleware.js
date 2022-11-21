@@ -1,9 +1,9 @@
 import {usersCollection, sessionsCollection} from "../database/db.js";
 
 async function checkUser(req, res, next) {
-
     // This function gets the user accordingly to the session id sent as a bearer token from the client
     try {
+
         let token = req.headers.authorization;
         token = token.replace("Bearer ", "");
 
@@ -15,7 +15,7 @@ async function checkUser(req, res, next) {
         res.locals.user = sessionUser;
     }
     catch(e) {
-        return res.status(500).send(e);
+        return res.status(500).send("Header inválido.");
     }    
     next();
 }

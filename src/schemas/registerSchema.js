@@ -5,10 +5,6 @@ const registerSchema = Joi.object({
     description: Joi.string().required()
 })
 
-const deleteSchema = Joi.object({
-    id: Joi.number().required()
-})
-
 const changeSchema = Joi.object({
     value: Joi.number().required(),
     description: Joi.string().required(),
@@ -17,6 +13,5 @@ const changeSchema = Joi.object({
 
 export {
     registerSchema,
-    deleteSchema,
     changeSchema
 }
